@@ -1,4 +1,4 @@
-The website https://worldwise-jonas.netlify.app/ is a travel-related application that showcases interactive features and dynamic functionalities. Here are the primary features of the website:
+The website (from Jonas Schmedtmann react course) is a travel-related application that showcases interactive features and dynamic functionalities. Here are the primary features of the website:
 
 ## 1. Interactive Map
 
