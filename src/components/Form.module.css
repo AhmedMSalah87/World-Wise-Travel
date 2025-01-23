@@ -29,6 +29,7 @@
 
 .form.loading {
   opacity: 0.3;
+  /* transform: scale(0.5); */
 }
 
 .form.loading button {

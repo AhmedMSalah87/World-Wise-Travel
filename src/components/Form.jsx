@@ -56,7 +56,7 @@ const Form = () => {
     const id = Date.now();
     dispatch({
       type: "ADD_CITY",
-      payload: { id, cityName, date, countryFlag, lat, lng, country },
+      payload: { id, cityName, date, countryFlag, lat, lng, country, notes },
     });
     navigate("/app/cities");
   };
@@ -100,7 +100,6 @@ const Form = () => {
           styleType="back"
           onClick={(e) => {
             e.preventDefault();
-            console.log("Back button clicked");
             navigate(-1);
           }}
         >

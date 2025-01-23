@@ -20,6 +20,7 @@ function LocationMarker() {
   const map = useMapEvents({
     click: (e) => {
       const { lat, lng } = e.latlng;
+      map.setView([lat, lng], map.getZoom());
       setPosition({ lat, lng });
       navigate(`form?lat=${lat}&lng=${lng}`);
     },

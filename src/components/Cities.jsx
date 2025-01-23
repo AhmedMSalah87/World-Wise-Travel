@@ -6,7 +6,8 @@ import { Link } from "react-router";
 const Cities = () => {
   const { state, dispatch } = useContext(CitiesContext);
 
-  const handleDeleteCity = (id) => {
+  const handleDeleteCity = (e, id) => {
+    e.preventDefault(); // i used it to prevent button to navigate unexpected to cityinfo
     dispatch({ type: "REMOVE_CITY", payload: id });
   };
 
@@ -20,7 +21,10 @@ const Cities = () => {
         <ul className={styles.cityList}>
           {state.cities.map((city) => (
             <li key={city.id}>
-              <Link className={styles.cityItem}>
+              <Link
+                className={styles.cityItem}
+                to={`${city.id}?lat=${city.lat}&lng=${city.lng}`}
+              >
                 <span className={styles.emoji}>{city.countryFlag}</span>
                 <h3 className={styles.name}>{city.cityName}</h3>
                 <p className={styles.date}>
@@ -28,7 +32,7 @@ const Cities = () => {
                 </p>
                 <button
                   className={styles.deleteBtn}
-                  onClick={() => handleDeleteCity(city.id)}
+                  onClick={(e) => handleDeleteCity(e, city.id)}
                 >
                   ×
                 </button>

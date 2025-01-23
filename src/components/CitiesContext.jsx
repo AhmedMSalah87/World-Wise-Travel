@@ -4,6 +4,7 @@ export const CitiesContext = createContext();
 
 const initialState = {
   cities: [],
+  currentCity: {},
 };
 
 const reducer = (state, action) => {
@@ -12,12 +13,22 @@ const reducer = (state, action) => {
       return {
         ...state,
         cities: [...state.cities, action.payload],
+        currentCity: action.payload,
       };
 
     case "REMOVE_CITY":
       return {
         ...state,
         cities: state.cities.filter((city) => city.id !== action.payload),
+        currentCity:
+          state.currentCity.id === action.payload ? {} : state.currentCity,
+      };
+
+    case "SET_CURRENT_CITY":
+      return {
+        ...state,
+        currentCity:
+          state.cities.find((city) => city.id === action.payload) || {},
       };
 
     default:
