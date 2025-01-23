@@ -22,6 +22,7 @@ const Form = () => {
   const [notes, setNotes] = useState("");
   const [country, setCountry] = useState("");
   const [countryFlag, setCountryFlag] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useContext(CitiesContext);
   const navigate = useNavigate();
   // const [error, setError] = useState("");
@@ -32,6 +33,7 @@ const Form = () => {
   useEffect(() => {
     const fetchCityInfo = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(
           `https://api-bdc.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
         );
@@ -41,6 +43,8 @@ const Form = () => {
         setCountryFlag(convertToEmoji(result.countryCode));
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -58,7 +62,10 @@ const Form = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleFormSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handleFormSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor="city">City name</label>
         <input
